@@ -1,0 +1,9 @@
+<h1 class="text-center" style="padding: 25px;">Create your own custom champions</h1>
+<div class="row">
+{{#each champions}}
+	<div class="col-3 card bg-primary" style="margin-right: 10px;">
+  <h2 class="card-title text-center text-white"><a style="color: white" href="/champions/{{this._id}}">{{this.Champion}}</h2>
+  <p class="card-body text-center " style="margin-top: 0; padding: 0;">{{this.Description}}<p>
+  </div>
+{{/each}}
+</div>

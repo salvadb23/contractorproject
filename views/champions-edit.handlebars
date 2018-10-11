@@ -1,0 +1,37 @@
+<form method="POST" action="/champions/{{champion._id}}?_method=PUT">
+  <fieldset>
+    <legend>Edit Champion</legend>
+    <div class="form-group">
+      <label for="Champion">Champion</label><br>
+      <input class="form-control" id="Champion" type="text" name="Champion" value="{{champion.Champion}}"/>
+    </div>
+    <div class="form-group">
+      <label for="Description">Description</label><br>
+      <input class="form-control" type="text" name="Description" value='{{champion.Description}}' />
+    </div>
+    <div class="form-group">
+      <label for="Passive">Passive</label><br>
+      <input class="form-control" id="Passive" type="text" name="Passive" value="{{champion.Passive}}" />
+    </div>
+    <div class="form-group">
+      <label for="Ability1">Ability One</label><br>
+      <textarea class="form-control" id="Ability1" type="text" name="Ability1" value="{{champion.Ability1}}">{{champion.Ability1}}</textarea>
+    </div>
+    <div class="form-group">
+      <label for="Ability2">Ability Two</label><br>
+      <textarea class="form-control" type="text" name="Ability2" value="{{champion.Ability2}}">{{champion.Ability2}}</textarea>
+    </div>
+    <div class="form-group">
+      <label for="Ability3">Ability Three</label><br>
+      <textarea class="form-control" type="text" name="Ability3" value="{{champion.Ability3}}">{{champion.Ability3}}</textarea>
+    </div>
+    <div class="form-group">
+      <label for="Ultimate">Ultimate</label><br>
+      <textarea class="form-control" type="text" name="Ultimate" value="{{champion.Ultimate}}">{{champion.Ultimate}}</textarea>
+    </div>
+  </fieldset>
+  <!-- BUTTON -->
+  <p>
+    <button type="submit">Save Review</button>
+  </p>
+</form>

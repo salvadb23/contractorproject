@@ -1,0 +1,13 @@
+<a class="btn btn-dark" style="margin-top: 20px;" href="/">Back to Champs!</a>
+<div style="align-items: center; max-width: 500px; margin: auto;">
+<h1 style="font-weight: 700">{{champion.Champion}}</h1>
+<h2 style="font-weight:300">{{champion.Description}}</h2>
+<p>Passive: {{champion.Passive}}</p>
+<p>Ability 1: {{champion.Ability1}}</p>
+<p>Ability 2: {{champion.Ability2}}</p>
+<p>Ability 3: {{champion.Ability3}}</p>
+<p>Ultimate: {{champion.Ultimate}}</p>
+<div>
+<a style="margin-bottom: 10px;" class="btn btn-dark" href="/champions/{{champion._id}}/edit">Edit</a>
+<form method="POST" action="/champions/{{champion._id}}?_method=DELETE">
+    <button class="btn btn-dark" type="submit">Delete</button>
