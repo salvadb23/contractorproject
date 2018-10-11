@@ -3,11 +3,10 @@ const express = require('express');
 const app = express();
 var exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/customChamps');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/customChamps');
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 const Champion = require('./models/champion')
-const port = process.env.PORT || 3000;
 app.listen(port);
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -16,7 +15,7 @@ app.use(methodOverride('_method'));
 
 
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log('App listening on port 3000!')
 })
 
