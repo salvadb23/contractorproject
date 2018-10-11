@@ -7,6 +7,8 @@ mongoose.connect('mongodb://localhost/customChamps');
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 const Champion = require('./models/champion')
+const port = process.env.PORT || 3000;
+app.listen(port);
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
