@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-block">
+    <h4 class="card-title text-center">{{this.title}}</h4>
+    <p class="card-text text-center">{{this.content}}</p>
+    <p><form method="POST" action="/comments/{{this._id}}?_method=DELETE">
+   	<div style="width:60px; margin: auto;">
+    <button class="btn-dark center-block" type="submit">Delete</button>
+	</div>
+    </form></p>
+  </div>
+</div>

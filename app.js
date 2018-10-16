@@ -6,11 +6,18 @@ const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/customChamps');
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
-const Champion = require('./models/champion')
+const Champion = require('./models/champion');
+const Schema = mongoose.Schema
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 app.use(methodOverride('_method'));
+
+const Comment = mongoose.model('Comment', {
+  title: String,
+  content: String,
+  championId: { type: Schema.Types.ObjectId, ref: 'Champion' },
+});
 
 
 
@@ -43,7 +50,9 @@ app.post('/champions', (req, res) => {
 
 app.get('/champions/:id', (req, res) => {
   Champion.findById(req.params.id).then((champion) => {
-    res.render('champions-show', { champion: champion })
+    Comment.find({ championId: req.params.id }).then(comments => {
+      res.render('champions-show', { champion: champion, comments: comments })
+    })
   }).catch((err) => {
     console.log(err.message);
   })
@@ -69,6 +78,23 @@ app.delete('/champions/:id', function (req, res) {
   console.log("DELETE champion")
   Champion.findByIdAndRemove(req.params.id).then((champion) => {
     res.redirect('/');
+  }).catch((err) => {
+    console.log(err.message);
+  })
+})
+
+app.post('/comments', (req, res) => {
+  Comment.create(req.body).then(comment => {
+    res.redirect(`/champions/${comment.championId}`);
+  }).catch((err) => {
+    console.log(err.message);
+  });
+});
+
+app.delete('/comments/:id', function (req, res) {
+  console.log("DELETE comment")
+  Comment.findByIdAndRemove(req.params.id).then((comment) => {
+    res.redirect(`/champions/${comment.championId}`);
   }).catch((err) => {
     console.log(err.message);
   })
